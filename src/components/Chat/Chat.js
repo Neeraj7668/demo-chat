@@ -7,7 +7,8 @@ import socketIo from "socket.io-client";
 import Message from "./Message/Message";
 import ScrollToBottom from "react-scroll-to-bottom";
 import "./Chat.css";
-const EndPoint = "http://localhost:5000/";
+// const EndPoint = "https://demo-test-chat.herokuapp.com/";
+const EndPoint = "http://52.1.249.231:5001";
 let socket;
 function Chat() {
   const [id, setId] = useState("");
@@ -23,11 +24,11 @@ function Chat() {
   };
 
   useEffect(() => {
-    socket = socketIo(EndPoint, { transports: ["websocket"] });
+    socket = socketIo(EndPoint);
 
     socket.on("connect", () => {
-      // console.log("connected");
-      setId(socket.id);
+      console.log("connected");
+      // setId(socket.id);
     });
     socket.emit("joined", { user });
 
